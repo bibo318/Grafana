@@ -66,7 +66,37 @@
     "graphTooltip": 1,
     "id": null,
     "iteration": 1573479287120,
-    "links": [],
+    "links": [
+      {
+        "$$hashKey": "object:2300",
+        "icon": "bolt",
+        "tags": [],
+        "targetBlank": true,
+        "title": "Update",
+        "tooltip": "Update dashboard",
+        "type": "link",
+        "url": "https://grafana.com/grafana/dashboards/"
+      },
+      {
+        "$$hashKey": "object:2301",
+        "icon": "question",
+        "tags": [],
+        "targetBlank": true,
+        "title": "GitHub",
+        "tooltip": "more dashboard",
+        "type": "link",
+        "url": "https://github.com/bibo318"
+      },
+      {
+        "$$hashKey": "object:2302",
+        "asDropdown": true,
+        "icon": "external link",
+        "tags": [],
+        "targetBlank": true,
+        "title": "",
+        "type": "dashboards"
+      }
+    ],
     "panels": [
       {
         "cacheTimeout": null,
@@ -135,7 +165,7 @@
         "tableColumn": "",
         "targets": [
           {
-            "expr": "sysUpTime{job=\"$Job\"} * 10",
+            "expr": "sysUpTime{instance=\"$instance\"} * 10",
             "legendFormat": "In",
             "refId": "A"
           }
@@ -222,7 +252,7 @@
         "tableColumn": "",
         "targets": [
           {
-            "expr": "max(irate(ifHCOutOctets{job=\"$Job\"}[5m]))",
+            "expr": "max(irate(ifHCOutOctets{instance=\"$instance\"}[5m]))",
             "instant": false,
             "legendFormat": "Out",
             "refId": "A"
@@ -310,7 +340,7 @@
         "tableColumn": "",
         "targets": [
           {
-            "expr": "max(irate(ifHCInOctets{job=\"$Job\"}[5m]))",
+            "expr": "max(irate(ifHCInOctets{instance=\"$instance\"}[5m]))",
             "legendFormat": "In",
             "refId": "A"
           }
@@ -397,7 +427,7 @@
         "tableColumn": "",
         "targets": [
           {
-            "expr": "max(delta(ifHCOutOctets{job=\"$Job\"}[$__range]))",
+            "expr": "max(delta(ifHCOutOctets{instance=\"$instance\"}[$__range]))",
             "legendFormat": "Out",
             "refId": "A"
           }
@@ -484,7 +514,7 @@
         "tableColumn": "",
         "targets": [
           {
-            "expr": "max(delta(ifHCInOctets{job=\"$Job\"}[$__range]))",
+            "expr": "max(delta(ifHCInOctets{instance=\"$instance\"}[$__range]))",
             "instant": false,
             "legendFormat": "In",
             "refId": "A"
@@ -660,35 +690,35 @@
         ],
         "targets": [
           {
-            "expr": "irate(ifHCOutOctets{job=\"$Job\"}[5m])",
+            "expr": "irate(ifHCOutOctets{instance=\"$instance\"}[5m])",
             "format": "table",
             "instant": true,
             "legendFormat": "out",
             "refId": "A"
           },
           {
-            "expr": "irate(ifHCInOctets{job=\"$Job\"}[5m])",
+            "expr": "irate(ifHCInOctets{instance=\"$instance\"}[5m])",
             "format": "table",
             "instant": true,
             "legendFormat": "in",
             "refId": "B"
           },
           {
-            "expr": "delta(ifHCOutOctets{job=\"$Job\"}[$__range])",
+            "expr": "delta(ifHCOutOctets{instance=\"$instance\"}[$__range])",
             "format": "table",
             "instant": true,
             "legendFormat": "total out",
             "refId": "C"
           },
           {
-            "expr": "delta(ifHCInOctets{job=\"$Job\"}[$__range])",
+            "expr": "delta(ifHCInOctets{instance=\"$instance\"}[$__range])",
             "format": "table",
             "instant": true,
             "legendFormat": "total in",
             "refId": "D"
           },
           {
-            "expr": "ifHighSpeed{job=\"$Job\"}",
+            "expr": "ifHighSpeed{instance=\"$instance\"}",
             "format": "table",
             "instant": true,
             "legendFormat": "high speed",
@@ -742,7 +772,7 @@
         "pluginVersion": "6.3.2",
         "targets": [
           {
-            "expr": "irate(ifHCOutOctets{job=\"$Job\"}[5m])",
+            "expr": "irate(ifHCOutOctets{instance=\"$instance\"}[5m])",
             "intervalFactor": 1,
             "legendFormat": "{{ifName}} ({{ifAlias}})",
             "refId": "B"
@@ -794,7 +824,7 @@
         "pluginVersion": "6.3.2",
         "targets": [
           {
-            "expr": "irate(ifHCOutOctets{job=\"$Job\"}[5m])",
+            "expr": "irate(ifHCOutOctets{instance=\"$instance\"}[5m])",
             "intervalFactor": 1,
             "legendFormat": "{{ifName}} ({{ifAlias}})",
             "refId": "B"
@@ -852,14 +882,14 @@
         "steppedLine": false,
         "targets": [
           {
-            "expr": "irate(ifHCOutOctets{job=\"$Job\"}[5m])",
+            "expr": "irate(ifHCOutOctets{instance=\"$instance\"}[5m])",
             "instant": false,
             "intervalFactor": 1,
             "legendFormat": "Out: {{ifName}} ({{ifAlias}})",
             "refId": "A"
           },
           {
-            "expr": "-irate(ifHCInOctets{job=\"$Job\"}[5m])",
+            "expr": "-irate(ifHCInOctets{instance=\"$instance\"}[5m])",
             "intervalFactor": 1,
             "legendFormat": "In: {{ifName}} ({{ifAlias}})",
             "refId": "B"
@@ -974,7 +1004,7 @@
       ]
     },
     "time": {
-      "from": "now-30m",
+      "from": "now-5m",
       "to": "now"
     },
     "timepicker": {
@@ -994,5 +1024,5 @@
     "timezone": "",
     "title": "SNMP monitor Stats",
     "uid": "biaaxco",
-    "version": 28
+    "version": 1
   }
