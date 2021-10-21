@@ -17,10 +17,10 @@
     fi
 echo "Install node_exporter"
 echo "Download tools node_exporter"
-  wget https://github.com/prometheus/node_exporter/releases/download/v1.2.0/node_exporter-1.2.0.linux-amd64.tar.gz
+  wget https://github.com/prometheus/node_exporter/releases/download/v1.2.2/node_exporter-1.2.2.linux-amd64.tar.gz
   tar xvfz node_exporter-*.*-amd64.tar.gz
 echo "Di chuyen node_exporter toi /usr/local.bin"
-  mv node_exporter-1.2.0.linux-amd64/node_exporter /usr/local/bin/ 
+  mv node_exporter-1.2.2.linux-amd64/node_exporter /usr/local/bin/ 
 echo "Tao User node_exporter phuc vu chay node exporter"
   sudo useradd -rs /bin/false node_exporter
 echo "Tao file node_exporter chay voi systemd"
@@ -40,12 +40,15 @@ ExecStart=/usr/local/bin/node_exporter
 WantedBy=multi-user.target
 EOF
 echo "Reload the system daemon & start service"
-sudo systemctl daemon-reload
+#sudo systemctl daemon-reload
 sudo systemctl start node_exporter
 echo "Kiem tra trang thai cua service node_exporter"
 sudo systemctl status node_exporter
 echo "enable service auto start"
 sudo systemctl enable node_exporter
 # mở firewall
+sleep 5
 echo "kiem tra dich vụ "
+curl http://localhost:9100/metrics > fileExporter.txt
+echo "ket thuc"
 
